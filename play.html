@@ -1,54 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Play Quizzes</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="scripts/play.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Play Quizzes</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="scripts/play.js" defer></script>
 </head>
 <body>
-    <header>
-        <h1>QuizKPI</h1>
-        <nav>
-            <ul>
-                <li><a href="home.html">Home</a></li>
-                <li><a href="play.html" class="active">Play</a></li>
-                <li><a href="create.html">Create</a></li>
-                <li><a href="manage.html">Manage</a></li>
-                <li><a href="results.html">Results</a></li>
-            </ul>
-        </nav>
-    </header>
+  <header>
+    <h1 class="logo">QuizKPI</h1>
+    <nav>
+      <ul>
+        <li><a href="home.html">Home</a></li>
+        <li><a href="play.html" class="active">Play</a></li>
+        <li><a href="create.html">Create</a></li>
+        <li><a href="manage.html">Manage</a></li>
+        <li><a href="results.html">Results</a></li>
+      </ul>
+    </nav>
+  </header>
 
-    <main>
-        <h2>Choose a Quiz</h2>
-        <p>Select one of the available quizzes below to start playing!</p>
+  <main>
+    <h2 class="quiz-header">Choose a Quiz</h2>
+    <p class="quiz-underheader">Select one of the available quizzes below to start playing!</p>
 
-        <div class="quiz-list">
-            <div class="quiz-item">
-                <h3>General Knowledge Quiz</h3>
-                <p>10 random questions from various topics.</p>
-                <a href="#" class="button">Start</a>
-            </div>
-            <div class="quiz-item">
-                <h3>Math Challenge</h3>
-                <p>Test your math skills and logical thinking!</p>
-                <a href="#" class="button">Start</a>
-            </div>
-            <div class="quiz-item">
-                <h3>History Facts</h3>
-                <p>How well do you know history?</p>
-                <a href="#" class="button">Start</a>
-            </div>
-        </div>
-    </main>
-    <footer class="footer">
-        <div class="footer-content">
-            <p>📍 Location: Kyiv, Ukraine</p>
-            <p>📧 Contact: </p>
-            <p>пупупу</p>
-        </div>
-    </footer>
+    <div class="quiz-list">
+      <div class="quiz-item">
+        <h3>General Knowledge Quiz</h3>
+        <p>10 random questions from various topics.</p>
+        <button class="button" onclick="startQuiz('random')">Start</button>
+      </div>
+      <div class="quiz-item">
+        <h3>Math Challenge</h3>
+        <p>Test your mathematical skills and logical thinking!</p>
+        <button class="button" onclick="startQuiz('Математика')">Start</button>
+      </div>
+      <div class="quiz-item">
+        <h3>History Facts</h3>
+        <p>How well do you know history?</p>
+        <button class="button" onclick="startQuiz('Історія')">Start</button>
+      </div>
+      <div class="quiz-item">
+        <h3>Geography</h3>
+        <p>Check your geography knowledge!</p>
+        <button class="button" onclick="startQuiz('Географія')">Start</button>
+      </div>
+    </div>
+
+    <!-- контейнер, куди вставляються питання -->
+    <div class="quiz-container" style="margin-top: 30px;"></div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>📍 Location: Kyiv, Ukraine</p>
+      <p>📧 Contact: quizkpi@example.com</p>
+      <p>year 2025.  Developed by Bril Mykola, Praschuk Danylo, Rozhoshenko Mykyta, Chernoplechy Andriy</p>
+    </div>
+  </footer>
 </body>
 </html>
