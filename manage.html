@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Manage Quizzes | My Perfect Quiz</title>
+    <link rel="stylesheet" href="style.css" /> 
+    
+    <script src="main.js" defer></script> 
+</head>
+<body>
+    <header>
+        <h1 class="logo">QuizKPI</h1>
+        <nav>
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="play.html">Play</a></li>
+                <li><a href="create.html">Create</a></li>
+                <li><a href="manage.html" class="active">Manage</a></li> 
+                <li><a href="results.html">Results</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2 class="quiz-header">Manage Your Quizzes</h2>
+        <p class="quiz-underheader">View, delete, and manage your created quizzes (categorized by topic).</p>
+
+        <section class="controls quiz-container" style="text-align: center; padding: 20px 25px;">
+            <a href="create.html" class="btn">➕ Create New Quiz</a> 
+        </section>
+
+        <section class="quiz-container"> 
+            <h2>Available Quizzes:</h2>
+            
+            <p id="no-quizzes-message" style="display: none; text-align: center; margin: 20px 0;">
+                You haven't created any quizzes yet. Use the button above to add questions!
+            </p>
+            
+            <ul id="quiz-list" class="quiz-list" style="margin: 0; padding: 0;"> 
+                </ul>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>📍 Location: Kyiv, Ukraine</p>
+            <p>📧 Contact: quizkpi@example.com</p>
+            <p>year 2025.<b> Developed by Bril Mykola, Praschuk Danylo, Rozhoshenko Mykyta, Chernoplechy Andriy</b></p>
+        </div>
+    </footer>
+</body>
+</html>

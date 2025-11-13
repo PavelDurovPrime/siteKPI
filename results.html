@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz Results | My Perfect Quiz</title>
+    <link rel="stylesheet" href="style.css" /> 
+    
+    <script src="main.js" defer></script> 
+</head>
+<body>
+    <header>
+        <h1 class="logo">QuizKPI</h1>
+        <nav>
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="play.html">Play</a></li>
+                <li><a href="create.html">Create</a></li>
+                <li><a href="manage.html">Manage</a></li>
+                <li><a href="results.html" class="active">Results</a></li> 
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2 class="quiz-header">Previous Quiz Results</h2>
+        <p class="quiz-underheader">Review your historical quiz attempts and performance.</p>
+
+        <section class="quiz-container"> 
+            <h2>Your History:</h2>
+            
+            <p id="no-results-message" style="text-align: center; margin: 20px 0;">
+                You haven't completed any quizzes yet. Go to the "Play" section to start one!
+            </p>
+            
+            <ul id="results-list" class="quiz-list" style="margin: 0; padding: 0;"> 
+                </ul>
+            
+            <div style="text-align: center; margin-top: 30px;">
+                 <button id="clear-history-btn" class="btn" style="background-color: #dc3545;">
+                    Clear All History
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>📍 Location: Kyiv, Ukraine</p>
+            <p>📧 Contact: quizkpi@example.com</p>
+            <p>year 2025.<b> Developed by Bril Mykola, Praschuk Danylo, Rozhoshenko Mykyta, Chernoplechy Andriy</b></p>

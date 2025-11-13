@@ -227,3 +227,115 @@ if (questions.length === 0) {
 
   localStorage.setItem('quizQuestions', JSON.stringify(questions));
 }
+
+// =========================================================================
+// === ФУНКЦІОНАЛ ДЛЯ СТОРІНКИ КЕРУВАННЯ (manage.html) ===
+// =========================================================================
+
+/**
+ * Відображає список усіх тестів (питань) на сторінці manage.html.
+ * Прив'язує обробники для видалення та проходження.
+ */
+function renderManagementList() {
+    // Використовуємо існуючий ключ для питань
+    const quizzes = JSON.parse(localStorage.getItem('quizQuestions')) || [];
+    const quizListElement = document.getElementById('quiz-list');
+    const noQuizzesMessage = document.getElementById('no-quizzes-message');
+    
+    // Очищаємо попередній вміст
+    if (!quizListElement) return; // Захист, якщо елемент не знайдено на сторінці
+    quizListElement.innerHTML = ''; 
+
+    if (quizzes.length === 0) {
+        if (noQuizzesMessage) noQuizzesMessage.style.display = 'block';
+        return;
+    }
+    
+    if (noQuizzesMessage) noQuizzesMessage.style.display = 'none';
+
+    // Для керування використовуємо унікальний ідентифікатор.
+    // Оскільки у ваших питаннях немає ID, ми будемо використовувати ІНДЕКС у масиві.
+    
+    // Групуємо питання за категоріями для зручності відображення, 
+    // оскільки ваш поточний код використовує категорії як тести.
+    const categories = quizzes.reduce((acc, q) => {
+        const cat = q.category || 'Без категорії';
+        if (!acc[cat]) {
+            acc[cat] = { name: cat, count: 0 };
+        }
+        acc[cat].count++;
+        return acc;
+    }, {});
+    
+    // Відображаємо список категорій/тестів
+    Object.values(categories).forEach((catInfo) => {
+        const listItem = document.createElement('li');
+        listItem.className = 'quiz-manage-item';
+        
+        // Для спрощення, тут керуємо тестами на рівні КАТЕГОРІЙ.
+        // Оскільки в play.js ви використовуєте category для startQuiz.
+        const categoryNameEncoded = encodeURIComponent(catInfo.name);
+        
+        listItem.innerHTML = `
+            <h3>Тест: ${catInfo.name}</h3>
+            <p>Кількість питань: ${catInfo.count}</p>
+            <div class="actions">
+                
+                <button 
+                    onclick="startQuiz('${catInfo.name}')" 
+                    class="button-small play-btn"
+                >
+                    Пройти
+                </button>
+                
+                <button 
+                    class="button-small delete-btn" 
+                    data-quiz-name="${catInfo.name}"
+                >
+                    🗑️ Видалити Тест
+                </button>
+            </div>
+        `;
+        
+        quizListElement.appendChild(listItem);
+    });
+    
+    // Додаємо обробники подій для кнопок "Видалити"
+    document.querySelectorAll('.delete-btn').forEach(button => {
+        button.addEventListener('click', (event) => {
+            const quizName = event.target.dataset.quizName;
+            deleteQuizCategory(quizName);
+        });
+    });
+}
+
+/**
+ * Видаляє всі питання, що належать до певної категорії/тесту.
+ * @param {string} categoryName - Назва категорії для видалення.
+ */
+function deleteQuizCategory(categoryName) {
+    if (!confirm(`Ви впевнені, що хочете видалити ТЕСТ "${categoryName}" та всі його питання? Цю дію не можна скасувати.`)) {
+        return;
+    }
+
+    const quizzes = JSON.parse(localStorage.getItem('quizQuestions')) || [];
+    
+    // Створюємо новий масив без питань цієї категорії
+    const updatedQuizzes = quizzes.filter(quiz => quiz.category !== categoryName); 
+    
+    // Зберігаємо оновлений масив у сховищі
+    localStorage.setItem('quizQuestions', JSON.stringify(updatedQuizzes));
+    
+    // Перемальовуємо список
+    renderManagementList(); 
+    alert(`Тест "${categoryName}" та його питання успішно видалено.`);
+}
+
+
+// Ініціалізація: викликаємо renderManagementList, тільки якщо ми на сторінці manage.html
+// (для цього потрібно, щоб на цій сторінці був елемент з ID 'quiz-list')
+document.addEventListener('DOMContentLoaded', () => {
+    if (document.getElementById('quiz-list')) {
+        renderManagementList();
+    }
+});
